@@ -11,7 +11,7 @@ pipeline {
                 sh 'npm install' 
             }
         }
-        stage('OWASP Dependency-Check Vulnerabilities') {
+        stage('Dependency-Check') {
             steps {
                 dependencyCheck additionalArguments: ''' 
                     -o './'
