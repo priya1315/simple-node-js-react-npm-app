@@ -6,11 +6,6 @@ pipeline {
         }
     }
     stages {
-        stage('Build') { 
-            steps {
-                sh 'npm install' 
-            }
-        }
         stage('OWASP Dependency-Check Vulnerabilities') {
             steps {
                 dependencyCheck additionalArguments: '''
