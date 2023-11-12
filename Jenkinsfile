@@ -6,20 +6,19 @@ pipeline {
         }
     }
     stages {
-        stages {
-		stage('Checkout SCM') {
-			steps {
-				git url: 'https://github.com/minXnub/JenkinsDependencyCheckTest.git'
-			}
-		}
-
-		stage('OWASP Dependency-Check') {
+        stage('Build') { 
+            steps {
+                sh 'npm install' 
+            }
+        }
+       stage('OWASP Dependency-Check') {
 			steps {
 				dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'OWASP Dependency-Check'
 			}
 		}
-	}	
-	post {
+        
+    }
+    post {
 		success {
 			dependencyCheckPublisher pattern: 'dependency-check-report.xml'
 		}
