@@ -20,7 +20,11 @@ pipeline {
                     --prettyPrint''', odcInstallation: 'Dependency-Check'
         
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-      }
+            }
+        }
+        stage('Debug') {
+    steps {
+        sh 'ls -la'
     }
     }
    
