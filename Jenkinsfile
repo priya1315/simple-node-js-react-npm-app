@@ -11,22 +11,17 @@ pipeline {
                 sh 'npm install' 
             }
         }
-        stage('Dependency-Check') {
+        stage('OWASP Dependency-Check Vulnerabilities') {
             steps {
                 dependencyCheck additionalArguments: ''' 
                     -o './'
                     -s './'
                     -f 'ALL' 
-                    --prettyPrint''', odcInstallation: 'Dependency-Check'
+                    --prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
         
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
             }
         }
-        stage('Debug') {
-    steps {
-        sh 'ls -la'
-    }
-    }
     }
    
 }
